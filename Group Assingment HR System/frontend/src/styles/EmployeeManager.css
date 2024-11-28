@@ -1,20 +1,18 @@
-/* Employee Manager Page Styling */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-image: url('/images/background.jpg'); /* Background image */
-  background-color: #ff8000; /* Subtle orange background */
+  background-image: url('/images/background.jpg');
+  background-color: #ff8000; 
   background-size: cover;
   background-attachment: fixed;
-  color: #333; /* Default text color */
-  display: flex; /* Enable flexbox for centering */
-  justify-content: center; /* Horizontally center content */
-  align-items: center; /* Vertically center content */
-  min-height: 100vh; /* Full viewport height */
+  color: #ffffff; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  min-height: 100vh; 
   margin-top: 30px;
 }
 
-/* Shared Container Styling */
 .employee-manager {
   margin-top:  50px;
   display: flex;
@@ -25,7 +23,7 @@ body {
 
 .form-container {
   margin-top:  30px;
-  background: rgba(255, 115, 0, 0.63); /* Slight transparency */
+  background: rgba(255, 115, 0, 0.63); 
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   padding: 30px;
@@ -35,7 +33,6 @@ body {
   margin-top: 30px;
 }
 
-/* Titles */
 h1 {
   font-size: 32px;
   color: #ffffff;
@@ -46,29 +43,27 @@ h1 {
 
 h2 {
   font-size: 24px;
-  color: #d83636; /* Red color for section titles */
+  color: #d83636;
   margin-bottom: 20px;
 }
 
-/* Form Styling */
 form {
   margin-top:  30px;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two columns of equal width */
-  grid-template-rows: auto auto auto; /* Three rows for the fields */
-  gap: 15px 20px; /* Spacing between items (row x column) */
+  color: white;
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: auto auto auto;
+  gap: 15px 20px; 
   width: 100%;
   align-items: center;
 }
 
-/* Label Styling */
 form label {
   font-weight: bold;
   color: #ffffff;
   text-align: left;
 }
 
-/* Input Field Styling */
 input, select {
   width: 100%;
   padding: 10px;
@@ -78,17 +73,16 @@ input, select {
   box-sizing: border-box;
 }
 
-/* Submit Button */
 button {
-  grid-column: span 2; /* Make button span across two columns */
+  grid-column: span 2;
   background-color: #ff6900;
   color: white;
   border: none;
+  padding: 10px 20px;
+  margin-left: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: bold;
-  padding: 12px;
-  margin-top: 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover {
@@ -96,13 +90,12 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   form {
-    grid-template-columns: 1fr; /* Make grid single-column on smaller screens */
+    grid-template-columns: 1fr;
   }
 
   button {
-    grid-column: span 1; /* Adjust button span for single-column layout */
+    grid-column: span 1;
   }
 }

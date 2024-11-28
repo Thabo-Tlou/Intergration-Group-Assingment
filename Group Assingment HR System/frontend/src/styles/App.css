@@ -1,4 +1,3 @@
-/* General Body Styles */
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
@@ -7,17 +6,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Align content to the top for more consistency */
+  justify-content: flex-start;
   min-height: 100vh;
   background: url('/images/background.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   box-sizing: border-box;
-  animation: fadeIn 1s ease-out; /* Fade-in animation for the body */
+  animation: fadeIn 1s ease-out;
 }
 
-/* Signature Styles */
 .signature {
   font-style: italic;
   font-size: 12px;
@@ -29,36 +27,34 @@ body {
 
 .signature:hover {
   color: white;
-  transform: scale(1.1); /* Slight scale effect on hover */
+  transform: scale(1.1);
 }
 
-/* Navigation Wrapper */
 .navigationWrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px; /* Adjusted padding for consistency */
-  background-color: rgba(34, 34, 34, 0.8); /* Semi-transparent background for contrast */
+  padding: 10px 20px;
+  background-color: rgba(34, 34, 34, 0.8);
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
   color: white;
   text-transform: uppercase;
-  position: fixed; /* Fixed position to make navigation consistent across the page */
-  top: 0; /* Stick to top */
-  left: 0; /* Stretch to the left side */
-  right: 0; /* Stretch to the right side */
-  z-index: 1000; /* Keep it on top of other content */
-  width: 100%; /* Full width */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
   box-sizing: border-box;
-  margin: 0; /* Remove any default margin */
-  animation: slideDown 1s ease-out; /* Slide down animation for navigation */
+  margin: 0;
+  animation: slideDown 1s ease-out;
   gap: 10px;
 }
 
-/* Logo Wrapper */
 .logoWrapper {
   display: flex;
   flex-shrink: 0;
-  animation: fadeInLeft 1s ease-out; /* Fade-in from left animation */
+  animation: fadeInLeft 1s ease-out;
 }
 
 .logoWrapper .stylish {
@@ -72,22 +68,21 @@ body {
 }
 
 .logoWrapper .logo:hover {
-  color: white; /* Change logo color on hover */
+  color: white;
 }
 
-/* Navigation Links */
 .navigation {
   display: flex;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 100%; /* Ensure the navigation items stretch across the width */
+  width: 100%;
   gap: 20px;
-  justify-content: center; /* Center the navigation items */
+  justify-content: center;
 }
 
 .navigation li {
-  padding: 0 15px; /* Consistent padding for items */
+  padding: 0 15px;
   color: white;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
@@ -104,34 +99,30 @@ body {
   color: #ea4f4c;
 }
 
-/* Main Content */
 .main-content {
-  margin-top: 60px; /* Ensure content does not overlap with fixed navigation */
+  margin-top: 60px;
   padding: 20px;
-  animation: fadeInUp 1s ease-out; /* Fade-in-up animation for main content */
+  animation: fadeInUp 1s ease-out;
 }
 
-/* Gaps Between Sections */
 .staff-info,
 .new-recruitments,
 .vehicle-procurement {
-  margin-top: 40px;  /* Adds space between sections */
+  margin-top: 40px;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.7);  /* Light background color for contrast */
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Add extra spacing to specific sections (if needed) */
 .staff-info {
-  margin-bottom: 40px;  /* Additional bottom margin to create more space between sections */
+  margin-bottom: 40px;
 }
 
 .new-recruitments {
-  margin-bottom: 40px;  /* Ensure space below recruitment section */
+  margin-bottom: 40px;
 }
 
-/* Tagline for extra spacing effect */
 .tagline {
   font-family: cursive;
   font-size: xx-small;
@@ -142,7 +133,6 @@ body {
   animation: fadeIn 2s ease-out 1s forwards;
 }
 
-/* Animations */
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -183,16 +173,11 @@ body {
   }
 }
 
-/* Media Queries for Responsiveness */
-
-/* For Small Devices like Tablets */
 @media (max-width: 768px) {
-  /* Reduce padding in the navigation bar */
   .navigationWrapper {
     padding: 10px;
   }
 
-  /* Adjust navigation items to fit smaller screens */
   .navigation {
     flex-direction: column;
     align-items: center;
@@ -202,19 +187,16 @@ body {
     padding: 10px 0;
   }
 
-  /* Stack logo and navigation */
   .logoWrapper {
     flex-direction: column;
     align-items: center;
     padding-bottom: 10px;
   }
 
-  /* Adjust padding and margins in main content */
   .main-content {
     padding: 10px;
   }
 
-  /* Adjust gaps between sections */
   .staff-info,
   .new-recruitments,
   .vehicle-procurement {
@@ -222,20 +204,16 @@ body {
     padding: 15px;
   }
 
-  /* Font adjustments for readability */
   .tagline {
     font-size: xx-small;
   }
 
-  /* Adjust the logo's font size for smaller screens */
   .logoWrapper .logo {
     font-size: 18px;
   }
 }
 
-/* For Mobile Devices */
 @media (max-width: 480px) {
-  /* Reduce overall padding and margins for small screens */
   body {
     padding: 10px;
   }

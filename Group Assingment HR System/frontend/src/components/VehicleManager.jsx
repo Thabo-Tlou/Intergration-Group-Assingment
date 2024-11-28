@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/VehicleManager.css'
+import '../styles/VehicleManager.css';
 
 const VehicleManager = () => {
   const [vehicles, setVehicles] = useState([]);
@@ -97,6 +97,21 @@ const VehicleManager = () => {
     }
   };
 
+  // Handle deleting a vehicle
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this vehicle?');
+    if (!confirmDelete) return;
+
+    try {
+      await axios.delete(`http://localhost:5000/vehicles/${id}`);
+      alert('Vehicle deleted successfully!');
+      fetchVehicles();
+    } catch (error) {
+      console.error('Error deleting vehicle:', error);
+      alert('Error deleting vehicle.');
+    }
+  };
+
   return (
     <div className="vehicle-manager">
       <h1>Vehicle Management</h1>
@@ -167,6 +182,7 @@ const VehicleManager = () => {
               </p>
               <p>Driver: {vehicle.driver ? vehicle.driver.fullName : 'No driver assigned'}</p>
               <button onClick={() => handleUpdate(vehicle._id)}>Update</button>
+              <button onClick={() => handleDelete(vehicle._id)} className="delete-button">Delete</button>
             </li>
           ))}
         </ul>
