@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('/images/background.jpg');
+    background-color: #ff8000; 
+    background-size: cover;
+    background-attachment: fixed;
+    color: #ffffff; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
+    margin-top: 30px;
+  }
+  
+  .employee-manager {
+    margin-top:  50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .form-container {
+    margin-top:  30px;
+    background: rgba(255, 115, 0, 0.63); 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  h1 {
+    font-size: 32px;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    color: #d83636;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    margin-top:  30px;
+    display: grid;
+    color: white;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: auto auto auto;
+    gap: 15px 20px; 
+    width: 100%;
+    align-items: center;
+  }
+  
+  form label {
+    font-weight: bold;
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #d83636;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    grid-column: span 2;
+    background-color: #ff6900;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  button:hover {
+    background-color: #d94d00;
+    transform: scale(1.05);
+  }
+  
+  @media (max-width: 768px) {
+    form {
+      grid-template-columns: 1fr;
+    }
+  
+    button {
+      grid-column: span 1;
+    }
+  }
+  
+  
+  logo.css
+  
+  /* Style for the logo container */
+  .logo {
+      position: absolute;     top: 20px;     left: 50%; /* Aligns the left edge of the logo to the center */
+      transform: translateX(-50%);
+      z-index: 10;
+  }
+  
+  /* Optional: Style for the form container */
+  .form-container {
+      padding-top: 80px;
+      padding-bottom: 40px;
+  }
+  
+  /* Optional: Style for the image inside the logo container */
+  .logo img {
+      max-width: 100px;
+      height: auto;
+      border-radius: 50%;
+  }
