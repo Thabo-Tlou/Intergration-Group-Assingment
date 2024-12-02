@@ -11,7 +11,6 @@ const App = () => {
     <ErrorBoundary>
       <Router>
         <div className="app-container">
-          {/* Simplified Navigation Bar */}
           <nav className="navigationWrapper">
             <div className="logoWrapper">
               <span className="stylish">AWY</span>
@@ -31,7 +30,6 @@ const App = () => {
             </ul>
           </nav>
 
-          {/* Routing for Application Pages */}
           <Routes>
             <Route path="/" element={<Navigate to="/employees" />} />
             <Route path="/employees" element={<EmployeeList />} />
