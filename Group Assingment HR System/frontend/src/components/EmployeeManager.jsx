@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from './api';
 import '../styles/EmployeeManager.css';
 
 const EmployeeManager = () => {
@@ -13,7 +13,6 @@ const EmployeeManager = () => {
   });
   const [currentEmployee, setCurrentEmployee] = useState(null);
 
-  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -22,21 +21,17 @@ const EmployeeManager = () => {
     }));
   };
 
-  // Handle form submission for adding/updating employees
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.salary !== '') {
-      formData.salary = parseFloat(formData.salary); // Ensure salary is a number
+      formData.salary = parseFloat(formData.salary);
     }
     try {
       if (currentEmployee) {
-        await axios.put(
-          `https://server-backend-w4r1.onrender.com/employees/${currentEmployee._id}`,
-          formData
-        );
+        await api.put(`/employees/${currentEmployee._id}`, formData);
         alert('Employee updated successfully!');
       } else {
-        await axios.post('https://server-backend-w4r1.onrender.com/employees', formData);
+        await api.post('/employees', formData);
         alert('Employee added successfully!');
       }
       resetForm();
@@ -46,7 +41,6 @@ const EmployeeManager = () => {
     }
   };
 
-  // Reset form to default state
   const resetForm = () => {
     setFormData({
       staffNumber: '',
@@ -61,10 +55,9 @@ const EmployeeManager = () => {
 
   return (
     <div className="employee-manager">
-      {/* Form Section */}
       <div className="form-container">
         <form onSubmit={handleSubmit}>
-          <h1>Adding New Recruits</h1>
+          <h1>Manage Employees</h1>
           <h2>{currentEmployee ? 'Edit Employee' : 'Add Employee'}</h2>
           {Object.keys(formData).map((field) => (
             <div key={field} className="form-field">

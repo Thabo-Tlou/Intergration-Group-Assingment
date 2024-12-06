@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from './api';
 import '../styles/EmployeeList.css';
 
 const EmployeeList = () => {
@@ -7,10 +7,9 @@ const EmployeeList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentEmployee, setCurrentEmployee] = useState(null);
 
-  // Fetch employees from backend
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get('https://server-backend-w4r1.onrender.com/employees');
+      const response = await api.get('/employees');
       setEmployees(response.data || []);
     } catch (error) {
       console.error('Error fetching employees:', error);
@@ -21,11 +20,10 @@ const EmployeeList = () => {
     fetchEmployees();
   }, []);
 
-  // Handle employee deletion
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this employee?')) {
       try {
-        await axios.delete(`https://server-backend-w4r1.onrender.com/employees/${id}`);
+        await api.delete(`/employees/${id}`);
         alert('Employee deleted successfully!');
         fetchEmployees();
       } catch (error) {
@@ -35,23 +33,21 @@ const EmployeeList = () => {
     }
   };
 
-  // Handle employee update
   const handleUpdate = async (e) => {
     e.preventDefault();
     if (!currentEmployee) return;
 
     try {
-      await axios.put(`https://server-backend-w4r1.onrender.com/employees/${currentEmployee._id}`, currentEmployee);
+      await api.put(`/employees/${currentEmployee._id}`, currentEmployee);
       alert('Employee updated successfully!');
       fetchEmployees();
-      setCurrentEmployee(null); // Reset the form after update
+      setCurrentEmployee(null);
     } catch (error) {
       console.error('Error updating employee:', error);
       alert('An error occurred while updating the employee.');
     }
   };
 
-  // Handle form input changes for updating employee details
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setCurrentEmployee((prev) => ({
@@ -60,30 +56,28 @@ const EmployeeList = () => {
     }));
   };
 
-  // Filter employees based on search term
-  const filteredEmployees = Array.isArray(employees)
-    ? employees.filter((employee) =>
-        employee.fullName?.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : [];
-
-  // Handle adding points to employee
   const handleAddPoints = async (employeeId, points, reason) => {
     try {
-      const response = await axios.patch(`https://server-backend-w4r1.onrender.com/employees/${employeeId}/add-points`, {
+      const response = await api.patch(`/employees/${employeeId}/add-points`, {
         points,
         reason,
       });
       console.log('Points added:', response.data);
       fetchEmployees(); // Refresh the employee list after adding points
+      alert(`Successfully added ${points} points for: ${reason}`);
     } catch (error) {
       console.error('Error adding points:', error);
+      alert('An error occurred while adding points.');
     }
   };
 
+  const filteredEmployees = employees.filter((employee) =>
+    employee.fullName?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="employee-list">
-      <h1>Employee List</h1>
+      <h1>Manage Employee Points</h1>
       <div className="search-container">
         <input
           type="text"
@@ -94,7 +88,6 @@ const EmployeeList = () => {
         />
       </div>
 
-      {/* Update form */}
       {currentEmployee && (
         <div className="update-form">
           <h2>Edit Employee</h2>
@@ -136,18 +129,15 @@ const EmployeeList = () => {
         </div>
       )}
 
-      {/* Employee list display */}
       {filteredEmployees.length > 0 ? (
         filteredEmployees.map((employee) => (
           <div key={employee._id} className="employee-card">
-            <p>Staff Number: {employee.staffNumber}</p>
-            <p>Name: {employee.fullName}</p>
-            <p>Position: {employee.position}</p>
-            <p>Salary: LSL {employee.salary}</p>
-            <p>Points: {employee.points}</p>
+            <p><strong>Staff Number:</strong> {employee.staffNumber}</p>
+            <p><strong>Name:</strong> {employee.fullName}</p>
+            <p><strong>Position:</strong> {employee.position}</p>
+            <p><strong>Points:</strong> {employee.points}</p>
 
-            {/* Buttons for adding points */}
-            <div className="qualification-buttons">
+            <div className="points-buttons">
               <button
                 onClick={() => handleAddPoints(employee._id, 10, 'Academic Qualification')}
               >
@@ -158,13 +148,23 @@ const EmployeeList = () => {
               >
                 Add Professional Training (+15 Points)
               </button>
+              <button
+                onClick={() => handleAddPoints(employee._id, 5, 'Outstanding Performance')}
+              >
+                Add Outstanding Performance (+5 Points)
+              </button>
             </div>
 
-            {/* Update and Delete buttons */}
-            <button onClick={() => setCurrentEmployee(employee)} className="edit-button">
+            <button
+              onClick={() => setCurrentEmployee(employee)}
+              className="edit-button"
+            >
               Edit
             </button>
-            <button onClick={() => handleDelete(employee._id)} className="delete-button">
+            <button
+              onClick={() => handleDelete(employee._id)}
+              className="delete-button"
+            >
               Delete
             </button>
           </div>

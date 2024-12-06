@@ -122,3 +122,61 @@ body {
       height: auto;
       border-radius: 50%;
   }
+
+  /* Vehicle info styles */
+.vehicle-list {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid */
+  gap: 20px;
+  padding: 0 20px;
+  justify-items: center;
+}
+
+.vehicle-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+  max-width: 300px;
+  opacity: 0;
+  animation: fadeInCard 0.5s forwards; /* Add fade-in effect */
+}
+
+/* Vehicle card hover effect */
+.vehicle-card:hover {
+  background-color: #f5f5f5;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Vehicle card text styling */
+.vehicle-card p {
+  font-size: 16px;
+  color: #333;
+  margin: 5px 0;
+}
+
+.vehicle-card p:first-child {
+  font-weight: bold;
+}
+
+/* Styling for status indication */
+.vehicle-card p:nth-child(4) {
+  color: #4CAF50; /* Available status color */
+}
+
+.vehicle-card p:nth-child(4):not([data-status="available"]) {
+  color: #e53935; /* Status colors for non-available */
+}
+
+@keyframes fadeInCard {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

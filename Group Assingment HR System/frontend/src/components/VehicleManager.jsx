@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from './api';
 import '../styles/VehicleManager.css';
 
 const VehicleManager = () => {
@@ -14,10 +14,9 @@ const VehicleManager = () => {
   });
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Fetch employees (to assign as drivers)
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get('https://server-backend-w4r1.onrender.com/employees');
+      const response = await api.get('/employees');
       setEmployees(response.data || []);
     } catch (error) {
       console.error('Error fetching employees:', error);
@@ -28,10 +27,9 @@ const VehicleManager = () => {
     fetchEmployees();
   }, []);
 
-  // Fetch vehicles
   const fetchVehicles = async () => {
     try {
-      const response = await axios.get('https://server-backend-w4r1.onrender.com/vehicles');
+      const response = await api.get('/vehicles');
       setVehicles(response.data || []);
     } catch (error) {
       console.error('Error fetching vehicles:', error);
@@ -42,7 +40,6 @@ const VehicleManager = () => {
     fetchVehicles();
   }, []);
 
-  // Handle form input changes for vehicle management
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -51,11 +48,10 @@ const VehicleManager = () => {
     }));
   };
 
-  // Handle vehicle submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://server-backend-w4r1.onrender.com/vehicles', formData);
+      await api.post('/vehicles', formData);
       alert('Vehicle added successfully!');
       fetchVehicles();
       setFormData({ vin: '', model: '', mileage: '', driverId: '', status: 'available' });
@@ -65,7 +61,6 @@ const VehicleManager = () => {
     }
   };
 
-  // Filter vehicles by search term
   const filteredVehicles = vehicles.filter((vehicle) =>
     vehicle.model.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -81,7 +76,6 @@ const VehicleManager = () => {
         />
       </div>
 
-      {/* Form to add new vehicle */}
       <form onSubmit={handleSubmit}>
         <h1>Manage Vehicles</h1>
         <h2>Add New Vehicle</h2>
@@ -100,7 +94,6 @@ const VehicleManager = () => {
         <button type="submit" className="submit-button">Add Vehicle</button>
       </form>
 
-      {/* Vehicle List */}
       <div className="vehicle-list">
         {filteredVehicles.map((vehicle) => (
           <div key={vehicle._id} className="vehicle-card">
