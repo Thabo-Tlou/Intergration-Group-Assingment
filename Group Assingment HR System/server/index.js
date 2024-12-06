@@ -1,20 +1,24 @@
-// Import dependencies
+
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import connectDB from './db.js';
 
-// Initialize Express app
 const app = express();
 
-// Middleware
+
+app.use(cors({ 
+  origin: 'https://awy-hr-management-system.netlify.app', // Allow requests from your Netlify domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Restrict methods if needed
+  allowedHeaders: ['Content-Type', 'Authorization'] // Add allowed headers
+}));
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
+
 connectDB();
 
-// **Employee Schema and Model**
+
 const employeeSchema = new mongoose.Schema(
   {
     staffNumber: { type: String, required: true, unique: true },
@@ -40,7 +44,7 @@ const employeeSchema = new mongoose.Schema(
 
 const Employee = mongoose.models.Employee || mongoose.model('Employee', employeeSchema);
 
-// **Vehicle Schema and Model**
+
 const vehicleSchema = new mongoose.Schema(
   {
     vin: { type: String, required: true, unique: true }, // Vehicle Identification Number
@@ -58,7 +62,7 @@ const vehicleSchema = new mongoose.Schema(
 
 const Vehicle = mongoose.models.Vehicle || mongoose.model('Vehicle', vehicleSchema);
 
-// **Employee Routes**
+
 app.get('/employees', async (req, res) => {
   try {
     const employees = await Employee.find();
@@ -117,7 +121,7 @@ app.delete('/employees/:id', async (req, res) => {
   }
 });
 
-// Add points to an employee
+
 app.patch('/employees/:id/add-points', async (req, res) => {
   const { id } = req.params;
   const { points, reason } = req.body;
@@ -150,7 +154,7 @@ app.patch('/employees/:id/add-points', async (req, res) => {
   }
 });
 
-// **Vehicle Routes**
+
 app.get('/vehicles', async (req, res) => {
   try {
     const vehicles = await Vehicle.find().populate('driver', 'fullName');
