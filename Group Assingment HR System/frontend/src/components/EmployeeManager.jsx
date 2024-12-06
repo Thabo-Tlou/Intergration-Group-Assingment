@@ -31,12 +31,12 @@ const EmployeeManager = () => {
     try {
       if (currentEmployee) {
         await axios.put(
-          `http://localhost:5000/employees/${currentEmployee._id}`,
+          `https://server-backend-w4r1.onrender.com/employees/${currentEmployee._id}`,
           formData
         );
         alert('Employee updated successfully!');
       } else {
-        await axios.post('http://localhost:5000/employees', formData);
+        await axios.post('https://server-backend-w4r1.onrender.com/employees', formData);
         alert('Employee added successfully!');
       }
       resetForm();
@@ -60,7 +60,7 @@ const EmployeeManager = () => {
   };
 
   return (
-    <div className="employee-manager">x
+    <div className="employee-manager">
       {/* Form Section */}
       <div className="form-container">
         <form onSubmit={handleSubmit}>

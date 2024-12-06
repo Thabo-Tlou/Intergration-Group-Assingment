@@ -10,7 +10,7 @@ const EmployeeList = () => {
   // Fetch employees from backend
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/employees');
+      const response = await axios.get('https://server-backend-w4r1.onrender.com/employees');
       setEmployees(response.data || []);
     } catch (error) {
       console.error('Error fetching employees:', error);
@@ -25,7 +25,7 @@ const EmployeeList = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this employee?')) {
       try {
-        await axios.delete(`http://localhost:5000/employees/${id}`);
+        await axios.delete(`https://server-backend-w4r1.onrender.com/employees/${id}`);
         alert('Employee deleted successfully!');
         fetchEmployees();
       } catch (error) {
@@ -41,7 +41,7 @@ const EmployeeList = () => {
     if (!currentEmployee) return;
 
     try {
-      await axios.put(`http://localhost:5000/employees/${currentEmployee._id}`, currentEmployee);
+      await axios.put(`https://server-backend-w4r1.onrender.com/employees/${currentEmployee._id}`, currentEmployee);
       alert('Employee updated successfully!');
       fetchEmployees();
       setCurrentEmployee(null); // Reset the form after update
@@ -70,7 +70,7 @@ const EmployeeList = () => {
   // Handle adding points to employee
   const handleAddPoints = async (employeeId, points, reason) => {
     try {
-      const response = await axios.patch(`http://localhost:5000/employees/${employeeId}/add-points`, {
+      const response = await axios.patch(`https://server-backend-w4r1.onrender.com/employees/${employeeId}/add-points`, {
         points,
         reason,
       });
